@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang-pinitos/server"
+	"github.com/joakimvivas/golang-api/server"
 )
 
 func main() {
