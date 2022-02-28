@@ -9,6 +9,6 @@ import (
 func (a *API) RegisterRoutes(r *mux.Router) {
 
 	r.HandleFunc("/contacts", a.getContacts).Methods(http.MethodGet)
+	r.HandleFunc("/contacts", a.postContact).Methods(http.MethodPost)
 	r.HandleFunc("/contacts/{id}", a.getContact).Methods(http.MethodGet)
-
 }
