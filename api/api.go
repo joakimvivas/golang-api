@@ -7,6 +7,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/gorilla/schema"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type API struct{}
@@ -17,7 +18,10 @@ type ContactsParams struct {
 }
 
 type PostContact struct {
-	Name string `json:"name"`
+	ID                 primitive.ObjectID `json:"_id,omitempty" bson:_id,omitempty"`
+	ProjectName        string             `json:"projectname,omitempty" bson:projectname,omitempty"`
+	URL                string             `json:"url,omitempty" bson:url,omitempty"`
+	ProjectDescription string             `json:"description,omitempty" bson:description,omitempty"`
 }
 
 var (
@@ -89,6 +93,6 @@ func (a *API) postContact(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	contacts = append(contacts, contact.Name)
+	contacts = append(contacts)
 	w.WriteHeader(http.StatusCreated)
 }
